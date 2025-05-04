@@ -1,0 +1,30 @@
+<div class="auth-container">
+     <h2>SignUP</h2>
+     <form (submit)="onSignup()">
+          <div>
+               <label for="email">Email:</label>
+               <input type="email" placeholder="Enter your email" required="required" name="email" id="email" [(ngModel)]="signupData.email">
+          </div>
+          <div>
+               <label for="password">Password:</label>
+               <input type="password" placeholder="Enter your password" required="required" name="password" id="password" [(ngModel)]="signupData.password">
+          </div>
+          <button type="submit" class="animated-button">
+               <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                         d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                    </path>
+               </svg>
+               <span class="text">Sign Up</span>
+               <span class="circle"></span>
+               <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                         d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                    </path>
+               </svg>
+          </button>
+     </form>
+     <p class="error" *ngIf="successMessage">{{successMessage}}</p>
+     <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+     <p>Already have an account? <a routerLink="/login">Login here</a></p>
+</div>
