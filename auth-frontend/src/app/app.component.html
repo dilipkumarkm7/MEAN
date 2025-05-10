@@ -1,4 +1,4 @@
-<nav class="bg-gray-800 text-white p-4 fixed w-screen">
+<nav class="bg-black text-white p-4 fixed w-screen">
      <div class="hidden md:flex justify-end items-center">
           <div class="flex space-x-4">
                <a routerLink="/login" *ngIf="!authService.isLoggedIn()" class="text-lg hover:text-gray-300">Login</a>
@@ -24,6 +24,6 @@
                class="text-lg hover:text-gray-300">Logout</a>
      </div>
 </nav>
-<div class="bg-black h-screen w-auto">
+<div class="bg-gradient-to-r from-teal-500 via-blue-600 to-indigo-500 h-screen">
      <router-outlet />
 </div>

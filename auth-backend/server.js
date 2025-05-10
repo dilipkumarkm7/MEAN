@@ -21,13 +21,13 @@ app.listen(port, () => {
 
 app.post('/api/signup', async (req, res) => {
      try {
-          const { email, password } = req.body;
+          const { name, username, email, password } = req.body;
           const existingUser = await User.findOne({ email });
           if (existingUser) {
                return res.status(500).json({ message: "Email already exists" });
           }
           const hashedPassword = await bcrypt.hash(password, 10);
-          const newUser = new User({ email, password: hashedPassword })
+          const newUser = new User({ name, username, email, password: hashedPassword })
           await newUser.save();
           res.status(201).json({ message: "User created successfully" });
      }
@@ -38,8 +38,8 @@ app.post('/api/signup', async (req, res) => {
 })
 app.post('/api/signin', async (req, res) => {
      try {
-          const { email, password } = req.body;
-          const user = await User.findOne({ email });
+          const { username, password } = req.body;
+          const user = await User.findOne({ username });
           if (!user) {
                return res.status(400).json({ message: "Invalid email or password" });
           }
@@ -49,11 +49,12 @@ app.post('/api/signin', async (req, res) => {
           }
           const token = jwt.sign({
                userId: user._id,
+               username: user.username,
                email: user.email
           }, process.env.JWT_SECRET, ({
                expiresIn: "1hr"
           }));
-          res.json({ token, user: { email: user.email } });
+          res.json({ token, user: { username: user.username } });
      }
      catch (err) {
           console.log("Error during signin", err);

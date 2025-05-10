@@ -11,18 +11,18 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
-  signupData = { email: '', password: '' };
+  signupData = { name:'', username:'', email: '', password: '' };
   successMessage = '';
   errorMessage = '';
   constructor(private authService: AuthService, private router: Router) { }
   onSignup() {
     this.successMessage = '';
     this.errorMessage = '';
-    const { email, password } = this.signupData;
-    this.authService.signUp(email, password).subscribe({
+    const { name, username, email, password } = this.signupData;
+    this.authService.signUp(name, username, email, password).subscribe({
       next: () => {
         this.successMessage = 'Registered Sucessfully';
-        this.signupData = { email: '', password: '' };
+        this.signupData = { name:'', username:'', email: '', password: '' };
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 2000);

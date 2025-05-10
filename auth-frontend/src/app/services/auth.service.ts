@@ -9,12 +9,12 @@ import { environment } from '../../environments/environment';
 export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
-  signUp(email: string, password: string){
-    const body = {email, password};
+  signUp(name:string, username:string, email: string, password: string){
+    const body = {name, username, email, password};
     return this.http.post(`${environment.apiUrl}/api/signup`, body);
   }
-  login(email: string, password: string) {
-    const body = { email, password };
+  login(username: string, password: string) {
+    const body = { username, password };
     return this.http.post<{ token: string }>(`${environment.apiUrl}/api/signin`, body);
   }
   logout() {

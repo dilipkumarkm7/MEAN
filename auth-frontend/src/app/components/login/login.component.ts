@@ -13,14 +13,14 @@ import { CommonModule } from '@angular/common';
 
 
 export class LoginComponent {
-  loginData = { email: '', password: '' }
+  loginData = { username: '', password: '' }
   errorMessage: string = '';
   constructor(private authservice: AuthService, private router: Router) { }
 
   onLogin() {
     this.errorMessage = '';
-    const { email, password } = this.loginData;
-    this.authservice.login(email, password).subscribe({
+    const { username, password } = this.loginData;
+    this.authservice.login(username, password).subscribe({
       next: (response) => {
         const token = response.token;
         localStorage.setItem('token', token);
