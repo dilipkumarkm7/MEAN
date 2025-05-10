@@ -3,17 +3,18 @@ import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 }) 
 export class ProfileComponent implements OnInit {
   userData:any = null;
   errorMessage = '';
-  constructor(private authService: AuthService, private http: HttpClient) { }
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router) { }
   ngOnInit(): void {
     this.http.get(environment.apiUrl + '/api/profile').subscribe({
       next: (response: any) => {
@@ -25,7 +26,10 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-  onLogout() {
-    this.authService.logout();
+  // onLogout() {
+  //   this.authService.logout();
+  // }
+  navigate(){
+    this.router.navigate(['/login']);
   }
 }
