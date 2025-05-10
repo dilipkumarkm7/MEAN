@@ -10,5 +10,14 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  authService = inject(AuthService);
+  menuOpen = false;
+
+  constructor(public authService: AuthService) { }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+  closeMenu() {
+    this.menuOpen = false;
+  }
 }

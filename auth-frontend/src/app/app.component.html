@@ -1,7 +1,29 @@
-<nav>
-     <a routerLink="/login" *ngIf="!authService.isLoggedIn()">Login</a>
-     <a routerLink="/signup" *ngIf="!authService.isLoggedIn()">SignUp</a>
-     <a routerLink="/profile" *ngIf="authService.isLoggedIn()">Profile</a>
-     <a (click)="authService.logout()" *ngIf="authService.isLoggedIn()">Logout</a>
+<nav class="bg-gray-800 text-white p-4 fixed w-screen">
+     <div class="hidden md:flex justify-end items-center">
+          <div class="flex space-x-4">
+               <a routerLink="/login" *ngIf="!authService.isLoggedIn()" class="text-lg hover:text-gray-300">Login</a>
+               <a routerLink="/signup" *ngIf="!authService.isLoggedIn()" class="text-lg hover:text-gray-300">SignUp</a>
+               <a routerLink="/profile" *ngIf="authService.isLoggedIn()" class="text-lg hover:text-gray-300">Profile</a>
+               <a (click)="authService.logout()" *ngIf="authService.isLoggedIn()"
+                    class="text-lg hover:text-gray-300">Logout</a>
+          </div>
+     </div>
+     <div class="md:hidden flex justify-between items-center">
+          <button (click)="toggleMenu()" class="text-white text-2xl focus:outline-none">
+               <i class="fas fa-bars"></i>
+          </button>
+     </div>
+     <div *ngIf="menuOpen" class="md:hidden flex flex-col space-y-4 mt-4">
+          <a routerLink="/login" *ngIf="!authService.isLoggedIn()" (click)="closeMenu()"
+               class="text-lg hover:text-gray-300">Login</a>
+          <a routerLink="/signup" *ngIf="!authService.isLoggedIn()" (click)="closeMenu()"
+               class="text-lg hover:text-gray-300">SignUp</a>
+          <a routerLink="/profile" *ngIf="authService.isLoggedIn()" (click)="closeMenu()"
+               class="text-lg hover:text-gray-300">Profile</a>
+          <a (click)="authService.logout(); closeMenu()" *ngIf="authService.isLoggedIn()"
+               class="text-lg hover:text-gray-300">Logout</a>
+     </div>
 </nav>
-<router-outlet />
+<div class="bg-black h-screen w-auto">
+     <router-outlet />
+</div>
